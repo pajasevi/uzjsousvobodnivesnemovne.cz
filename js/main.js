@@ -31,7 +31,15 @@
       noElem.textContent = '';
       noElem.appendChild(imgElem);
     } else {
-      noElem.textContent = noAnswers[Math.floor(Math.random() * noAnswers.length)];
+      var getNewAnswer = function() {
+        var newAnswer = noAnswers[Math.floor(Math.random() * noAnswers.length)];
+
+        if (noElem.textContent === newAnswer) return getNewAnswer();
+
+        return newAnswer;
+      };
+
+      noElem.textContent = getNewAnswer();
     }
   };
 
